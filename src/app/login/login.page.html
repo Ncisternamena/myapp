@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar class="header-toolbar">
+    <ion-title>Bienvenido a Registrapp</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="custom-padding">
+
+  
+  <ion-card class="image-card">
+    <ion-card-content>
+      <img src="assets/img/duocuc2.png" alt="Duoc" id="imgDuoc">
+    </ion-card-content>
+  </ion-card>
+
+<ion-content>
+  <form (submit)="login()">
+    <ion-item>
+      <ion-label position="floating">Email</ion-label>
+      <ion-input type="email" [(ngModel)]="email" name="email" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Passsword</ion-label>
+      <ion-input type="password" [(ngModel)]="password" name="password" required></ion-input>
+    </ion-item>
+
+    <ion-button expand="full" type="submit">Login</ion-button>
+  </form>
+</ion-content>
