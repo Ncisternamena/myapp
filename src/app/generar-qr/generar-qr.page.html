@@ -1,12 +1,27 @@
 <ion-header>
-  <ion-toolbar color="primary">
+  <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-button (click)="goBack()">
-        <ion-icon name="arrow-back"></ion-icon>
+      <ion-button (click)="regresar()"> <!-- Botón de retorno -->
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
       </ion-button>
     </ion-buttons>
     <ion-title>Generar QR</ion-title>
   </ion-toolbar>
 </ion-header>
 
+<ion-content>
+  <ion-button (click)="generarQr()">Generar QR</ion-button>
+  
+  <div *ngIf="qrData">
+    <qrcode [qrdata]="qrData" [width]="200"></qrcode>
+  </div>
 
+  <h3>Listado de Asistentes</h3>
+  <ion-list>
+    <ion-item *ngFor="let asistente of asistentes">
+      <ion-label>
+        {{ asistente.email }} - {{ asistente.fecha }} - {{ asistente.hora }}
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

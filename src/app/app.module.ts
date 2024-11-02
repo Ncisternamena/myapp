@@ -9,7 +9,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { environment } from '../environments/environment';
-
+import{QrCodeModule} from 'ng-qrcode'
+ 
 
 
 
@@ -19,6 +20,7 @@ import { environment } from '../environments/environment';
   AngularFireModule.initializeApp(environment.firebaseConfig),
   
   AngularFireAuthModule,
+  QrCodeModule
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
