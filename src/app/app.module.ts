@@ -10,7 +10,8 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { environment } from '../environments/environment';
 import{QrCodeModule} from 'ng-qrcode'
- 
+///escaner
+import { ToastController } from '@ionic/angular';
 
 
 
@@ -22,7 +23,7 @@ import{QrCodeModule} from 'ng-qrcode'
   AngularFireAuthModule,
   QrCodeModule
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [ToastController ,{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

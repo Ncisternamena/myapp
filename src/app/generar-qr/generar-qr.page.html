@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-button (click)="regresar()"> <!-- Botón de retorno -->
+      <ion-button (click)="regresar()"> <!-- botn-->
         <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -16,11 +16,13 @@
     <qrcode [qrdata]="qrData" [width]="200"></qrcode>
   </div>
 
-  <h3>Listado de Asistentes</h3>
+  <h3>Listado de alumnos</h3>
   <ion-list>
     <ion-item *ngFor="let asistente of asistentes">
       <ion-label>
-        {{ asistente.email }} - {{ asistente.fecha }} - {{ asistente.hora }}
+        <h2>Email del estudiante : {{ asistente.studentEmail  }}</h2>
+        <p>Fecha y Hora: {{ asistente.timestamp | date: 'dd/MM/yyyy hh:mm:ss a' }}</p>
+
       </ion-label>
     </ion-item>
   </ion-list>

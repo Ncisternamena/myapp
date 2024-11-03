@@ -1,7 +1,10 @@
+// GenerarQrPage.ts
+
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { v4 as uuidv4 } from 'uuid';
 import { NavController } from '@ionic/angular'; 
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-generar-qr',
@@ -12,17 +15,21 @@ export class GenerarQrPage implements OnInit {
   qrData: string = '';
   asistentes: any[] = [];
 
-  constructor(private firestore: AngularFirestore, private navCtrl: NavController) {}
+  constructor(private firestore: AngularFirestore, private navCtrl: NavController, private authService: AuthService) {}
 
   ngOnInit() {
-   //actualzia en tiempo real quienes escanean
+    // Obtener actualización en tiempo real de asistentes
     this.firestore.collection('asistencias').valueChanges().subscribe((data: any[]) => {
       this.asistentes = data;
     });
   }
 
   generarQr() {
-    this.qrData = uuidv4(); //los genera unicos
+    const id = uuidv4(); // ID único para el evento
+    const timestamp = new Date().toISOString(); // Fecha y hora actual
+  
+    // Generar datos estructurados para el QR
+    this.qrData = JSON.stringify({ id, timestamp });
   }
 
   regresar() {

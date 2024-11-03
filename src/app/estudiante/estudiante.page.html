@@ -1,13 +1,29 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>estudiante</ion-title>
+    <ion-title>Estudiante</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">estudiante</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+  <h1>Bienvenido, {{ nombre }}!</h1>
+  
+  <!-- Mensaje para indicar que el escáner no está soportado -->
+  <div *ngIf="!isSupported" class="ion-padding">
+    <p>El escáner de códigos QR no es compatible con este dispositivo.</p>
+  </div>
+  
+  <ion-list *ngIf="barcodes.length > 0">
+    <ion-item *ngFor="let barcode of barcodes">
+      <ion-label>
+        <h2>Formato: {{ barcode.format }}</h2>
+        <p>Valor: {{ barcode.rawValue }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+  
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button (click)="openQRCodeScanner()" [disabled]="!isSupported">
+      <ion-icon name="scan"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

@@ -3,7 +3,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { FirebaseError } from '@angular/fire/app';
-import { AuthService } from '../auth/auth.service'; // Esto debería funcionar si la estructura es correcta
+import { AuthService } from '../auth/auth.service'; 
 
 
 @Component({
@@ -22,11 +22,15 @@ export class LoginPage {
     private authService : AuthService
   ) {}
   async login() {
+    if (!this.email || !this.password) {
+      this.showAlert('Error de validación', 'ingresa tu correo y contraseña.');
+      return; 
+    }
     try {
       await this.authService.login(this.email, this.password);
     } catch (error: any) {
-      const errorMessage = error?.message || 'Unknown error occurred';
-      this.showAlert('Login failed', errorMessage);
+      const errorMessage = error?.message || 'Ha ocurrido un error.';
+      this.showAlert('Error al ingresar', errorMessage);
     }
   }
   
@@ -35,7 +39,7 @@ export class LoginPage {
     const alert = await this.alertCtrl.create({
       header,
       message,
-      buttons: ['OK']
+      buttons: ['Intentar de nuevo']
     });
     await alert.present();
   }
