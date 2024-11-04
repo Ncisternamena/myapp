@@ -59,4 +59,29 @@ export class AuthService {
   getUserData(uid: string): Observable<any> {
     return this.firestore.collection('users').doc(uid).valueChanges();
   }
+  async register(email: string, password: string, role: string) {
+    try {
+      const userCredential = await this.afAuth.createUserWithEmailAndPassword(email, password);
+      const user = userCredential.user;
+
+      if (user) {
+        await this.firestore.collection('users').doc(user.uid).set({
+          email: email,
+          role: role,
+        });
+      }
+    } catch (error) {
+      throw error; 
+    }
+  }
+
+  async resetPassword(email: string) {
+    try {
+      await this.afAuth.sendPasswordResetEmail(email);
+      console.log('Correo de recuperación enviado');
+    } catch (error) {
+      throw error; 
+    }
+  }
 }
+

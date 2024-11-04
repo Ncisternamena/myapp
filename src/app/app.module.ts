@@ -14,7 +14,7 @@ import{QrCodeModule} from 'ng-qrcode'
 import { ToastController } from '@ionic/angular';
 
 ///componente footer 
-import { FooterComponent } from './footer/footer.component'; 
+import { FooterComponent } from './footer/footer.component';
 
 
 

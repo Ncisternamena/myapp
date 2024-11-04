@@ -52,7 +52,7 @@ export class EstudiantePage implements OnInit {
   
 
   goBack() {
-    this.location.back();
+    this.location.back(); // Cambia '/ruta-anterior' por la ruta correcta
   }
 
   async openQRCodeScanner() {
