@@ -25,14 +25,14 @@ export class EstudiantePage implements OnInit {
     private afAuth: AngularFireAuth,
     private toastController: ToastController,
     private firestore : AngularFirestore
+    
   ) {}
 
   async ngOnInit() {
-    // Verificar si la funcionalidad está soportada
+  
     const supportResult = await BarcodeScanner.isSupported();
     this.isSupported = supportResult.supported;
-
-    // Instalar el módulo de Google Barcode Scanner si es necesario
+  
     if (this.isSupported) {
       try {
         await BarcodeScanner.installGoogleBarcodeScannerModule();
@@ -41,8 +41,6 @@ export class EstudiantePage implements OnInit {
         this.showToast('No se pudo instalar el escáner. Verifica los errores.');
       }
     }
-
-    // Obtener los datos del usuario autenticado
     this.afAuth.user.subscribe(user => {
       if (user) {
         this.authService.getUserData(user.uid).subscribe(data => {
@@ -51,6 +49,7 @@ export class EstudiantePage implements OnInit {
       }
     });
   }
+  
 
   goBack() {
     this.location.back();
@@ -62,7 +61,6 @@ export class EstudiantePage implements OnInit {
         await this.presentAlert('Permiso denegado', 'Conceda permiso de cámara para usar el escáner.');
         return;
     }
-
     try {
         const { barcodes } = await BarcodeScanner.scan();
         this.handleScannedBarcodes(barcodes);
@@ -72,38 +70,36 @@ export class EstudiantePage implements OnInit {
     }
 }
 
+  async handleScannedBarcodes(barcodes: Barcode[]) {
+    if (barcodes.length > 0) {
+      for (const barcode of barcodes) {
+          const scannedData = JSON.parse(barcode.rawValue); 
 
-async handleScannedBarcodes(barcodes: Barcode[]) {
-  if (barcodes.length > 0) {
-    for (const barcode of barcodes) {
-        const scannedData = JSON.parse(barcode.rawValue); // Obtener datos del QR
+        
+          const email = await this.authService.getCurrentUserEmail(); 
+          if (email) {
+            
+              await this.firestore.collection('asistencias').add({
+                  eventId: scannedData.id, 
+                  studentEmail: email, 
+                  timestamp: new Date().toISOString(),
+              });
 
-        // Suponiendo que el alumno está autenticado
-        const email = await this.authService.getCurrentUserEmail(); // Obtener el email del alumno
-
-        if (email) {
-            // Guardar la asistencia con el correo del alumno
-            await this.firestore.collection('asistencias').add({
-                eventId: scannedData.id, // ID del evento
-                studentEmail: email, // Correo del alumno
-                timestamp: new Date().toISOString(), // Fecha y hora del escaneo
-            });
-
-            this.showToast(`Código escaneado: ${scannedData.id} - Asistencia registrada para ${email}`);
-        } else {
-            this.showToast('No se pudo obtener el correo del usuario.');
-        }
+              this.showToast(`Código escaneado: ${scannedData.id} - Asistencia registrada para ${email}`);
+          } else {
+              this.showToast('No se pudo obtener el correo del usuario.');
+          }
+      }
+    } else {
+      this.showToast('No se encontró ningún código.');
     }
-  } else {
-    this.showToast('No se encontró ningún código.');
   }
-}
   async saveAttendance(id: string, email: string, timestamp: string) {
     await this.firestore.collection('asistencias').add({
         id,
         email,
         timestamp,
-        createdAt: new Date(), // Puedes también añadir un campo creado en Firestore
+        createdAt: new Date(), 
     });
 }
 

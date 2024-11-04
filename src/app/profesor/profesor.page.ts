@@ -23,8 +23,6 @@ export class ProfesorPage implements OnInit{
     });
   }
 
-
-  
   navigateToQR() {
     this.router.navigate(['/generar-qr']);
   }

@@ -5,9 +5,8 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <h1>Bienvenido, {{ nombre }}!</h1>
+  <h1>Bienvenido, {{ nombre}}!</h1>
   
-  <!-- Mensaje para indicar que el escáner no está soportado -->
   <div *ngIf="!isSupported" class="ion-padding">
     <p>El escáner de códigos QR no es compatible con este dispositivo.</p>
   </div>

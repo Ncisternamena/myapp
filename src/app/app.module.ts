@@ -13,10 +13,13 @@ import{QrCodeModule} from 'ng-qrcode'
 ///escaner
 import { ToastController } from '@ionic/angular';
 
+///componente footer 
+import { FooterComponent } from './footer/footer.component'; 
+
 
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent,FooterComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
   AngularFireModule.initializeApp(environment.firebaseConfig),
   
