@@ -37,7 +37,7 @@ export class EstudiantePage implements OnInit {
       try {
         await BarcodeScanner.installGoogleBarcodeScannerModule();
       } catch (error) {
-        console.error('Error al instalar el módulo de escáner:', error);
+        console.error('Error al instalar el módulo de escáner:', error);//debugg
         this.showToast('No se pudo instalar el escáner. Verifica los errores.');
       }
     }
@@ -52,7 +52,7 @@ export class EstudiantePage implements OnInit {
   
 
   goBack() {
-    this.location.back(); // Cambia '/ruta-anterior' por la ruta correcta
+    this.location.back(); 
   }
 
   async openQRCodeScanner() {

@@ -12,14 +12,15 @@
 
 
 
-
-
-
-<ion-content class="ion-padding">
+<ion-content class="ion-padding" color="warning">
+  <ion-card>
+    <ion-card-header>
   <h1>Bienvenido, {{ nombre }}!</h1>
-  <ion-button expand="full" color="secondary" (click)="navigateToQR()">Desarrollo de Aplicaciones Móviles</ion-button>
-  <ion-button expand="full" color="secondary" (click)="navigateToQR()">Calidad de Software</ion-button>
-  <ion-button expand="full" color="secondary" (click)="navigateToQR()">Arquitectura</ion-button>
+  <ion-button expand="full" color="primary" (click)="navigateToQR()">Desarrollo de Aplicaciones Móviles</ion-button>
+  <ion-button expand="full" color="primary" (click)="navigateToQR()">Calidad de Software</ion-button>
+  <ion-button expand="full" color="primary" (click)="navigateToQR()">Arquitectura</ion-button>
+</ion-card-header>
+</ion-card>
 </ion-content>
 
 

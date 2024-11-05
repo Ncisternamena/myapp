@@ -9,12 +9,16 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
+<ion-content class="ion-padding" color="warning">
+  <ion-card>
+    <ion-card-header>
   <h1>Bienvenido, {{ nombre }}!</h1>
   
   <div *ngIf="!isSupported" class="ion-padding">
     <p>El escáner de códigos QR no es compatible con este dispositivo.</p>
   </div>
+</ion-card-header>
+ </ion-card>
   
   <ion-list *ngIf="barcodes.length > 0">
     <ion-item *ngFor="let barcode of barcodes">
@@ -25,11 +29,10 @@
     </ion-item>
   </ion-list>
   
-  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
-    <ion-fab-button (click)="openQRCodeScanner()" [disabled]="!isSupported">
-      <ion-icon name="scan"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
+  <ion-button expand="full" color="primary" (click)="openQRCodeScanner()" [disabled]="!isSupported">
+    <ion-icon slot="start" name="scan"></ion-icon>
+    Escanear QR
+  </ion-button>
 </ion-content>
 
 

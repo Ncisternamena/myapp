@@ -9,21 +9,33 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content color = "warning">
   <ion-button (click)="generarQr()">Generar QR</ion-button>
   
   <div *ngIf="qrData">
-    <qrcode [qrdata]="qrData" [width]="200"></qrcode>
+    <qrcode [qrdata]="qrData" [width]="200"></qrcode>  <!-- ajustar tamaño 1000 ta bueno para proyectar-->
   </div>
 
-  <h3>Listado de alumnos</h3>
-  <ion-list>
-    <ion-item *ngFor="let asistente of asistentes">
-      <ion-label>
-        <h2>Email del estudiante : {{ asistente.studentEmail  }}</h2>
-        <p>Fecha y Hora: {{ asistente.timestamp | date: 'dd/MM/yyyy hh:mm:ss a' }}</p>
+  <h3 style="
+  text-align: center;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;font-size: 1.5rem;color: #012C56;font-weight: 600;margin-bottom: 20px;letter-spacing: 1px;
+">
+  Listado de Alumnos
+</h3>
+  <div style="max-width: 600px; margin: 0 auto;">
+    <ion-list>
+      <ion-item *ngFor="let asistente of asistentes" lines="none" style="--background: #FFB71B; border-radius: 10px; margin-bottom: 10px;">
+        <ion-avatar slot="start">
+          <ion-icon name="person-circle" style="font-size: 2rem; color: #012C56;"></ion-icon>
+        </ion-avatar>
+        <ion-label>
+          <h2 style="color: #012C56; font-weight: bold; font-size: 1.1rem;">Email del Estudiante</h2>
+          <p style="color: #333;">{{ asistente.studentEmail }}</p>
+          <h2 style="color: #012C56; font-weight: bold; font-size: 1.1rem;">Fecha y Hora</h2>
+          <p style="color: #333;">{{ asistente.timestamp | date: 'dd/MM/yyyy hh:mm:ss a' }}</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+  
 
-      </ion-label>
-    </ion-item>
-  </ion-list>
 </ion-content>
