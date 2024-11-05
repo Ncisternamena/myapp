@@ -6,7 +6,7 @@ import { IonicModule } from '@ionic/angular';
 import { GenerarQrPageRoutingModule } from './generar-qr-routing.module';
 import { GenerarQrPage } from './generar-qr.page';
 
-import { QRCodeModule } from 'angularx-qrcode'; // Importa QRCodeModule
+import { QRCodeModule } from 'angularx-qrcode'; 
 
 @NgModule({
   imports: [
@@ -14,7 +14,7 @@ import { QRCodeModule } from 'angularx-qrcode'; // Importa QRCodeModule
     FormsModule,
     IonicModule,
     GenerarQrPageRoutingModule,
-    QRCodeModule, // Asegúrate de incluir QRCodeModule aquí
+    QRCodeModule, 
   ],
   declarations: [GenerarQrPage],
 })

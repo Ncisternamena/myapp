@@ -4,7 +4,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { User as FirebaseUser } from 'firebase/auth';
-
+//separacion de roles
 interface User {
   email: string;
   role: 'profesor' | 'estudiante'; 
@@ -19,12 +19,12 @@ export class AuthService {
     private firestore: AngularFirestore,
     private router: Router
   ) {}
-
+//obterner email
   async getCurrentUserEmail(): Promise<string | null> {
     const user = await this.afAuth.currentUser; 
     return user ? user.email : null; 
   }
-
+//login pidiendo email y contraseña
   async login(email: string, password: string) {
     try {
       const userCredential = await this.afAuth.signInWithEmailAndPassword(email, password);
@@ -55,7 +55,7 @@ export class AuthService {
       throw error; 
     }
   }
-
+//obtiene los datos de coleccion users RECORDARaaaaa
   getUserData(uid: string): Observable<any> {
     return this.firestore.collection('users').doc(uid).valueChanges();
   }
@@ -74,7 +74,7 @@ export class AuthService {
       throw error; 
     }
   }
-
+//recuperar contraseña no implementado
   async resetPassword(email: string) {
     try {
       await this.afAuth.sendPasswordResetEmail(email);

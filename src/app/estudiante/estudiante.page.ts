@@ -27,7 +27,7 @@ export class EstudiantePage implements OnInit {
     private firestore : AngularFirestore
     
   ) {}
-
+//recuerda bugg borrando await y el async 
   async ngOnInit() {
   
     const supportResult = await BarcodeScanner.isSupported();

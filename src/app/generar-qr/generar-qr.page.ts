@@ -18,17 +18,17 @@ export class GenerarQrPage implements OnInit {
   constructor(private firestore: AngularFirestore, private navCtrl: NavController, private authService: AuthService) {}
 
   ngOnInit() {
-    // Obtener actualización en tiempo real de asistentes
+    //actualizacion tiempo real de la colecion 
     this.firestore.collection('asistencias').valueChanges().subscribe((data: any[]) => {
       this.asistentes = data;
     });
   }
 
   generarQr() {
-    const id = uuidv4(); // ID único para el evento
-    const timestamp = new Date().toISOString(); // Fecha y hora actual
+    const id = uuidv4(); //genera un id unico
+    const timestamp = new Date().toISOString(); 
   
-    // Generar datos estructurados para el QR
+    
     this.qrData = JSON.stringify({ id, timestamp });
   }
 
