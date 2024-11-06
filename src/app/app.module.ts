@@ -9,17 +9,20 @@ import { AppRoutingModule } from './app-routing.module';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { environment } from '../environments/environment';
+
 import{QrCodeModule} from 'ng-qrcode'
-///escaner
+///notificacion de permisos 
 import { ToastController } from '@ionic/angular';
 
-///componente footer 
+///componente footer  
 import { FooterComponent } from './footer/footer.component';
 
 
 
 @NgModule({
-  declarations: [AppComponent,FooterComponent],
+  declarations: [AppComponent,FooterComponent],//seagregó footer
+
+  
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
   AngularFireModule.initializeApp(environment.firebaseConfig),
   

@@ -1,27 +1,38 @@
-#container {
+.intro-content {
+  --background: #FFB71B; // Fondo amarillo
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
   text-align: center;
-
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  padding: 0;
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
+.spinner-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
 }
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
+.logo {
+  width: 50%; // Ajusta según el tamaño que necesites
+  max-width: 300px; // Tamaño máximo del logo
+  margin-bottom: 20px;
 }
 
-#container a {
-  text-decoration: none;
+.spinner {
+  margin-bottom: 20px;
+}
+
+.welcome-card {
+  background: #FFB71B; // Fondo amarillo
+  color: #012C56; // Texto azul
+  --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); // Sombra ligera para el card
+  border-radius: 8px; // Bordes redondeados para el card
+  padding: 20px;
+  width: 80%; // Ajusta según el tamaño que necesites
+  max-width: 500px; // Tamaño máximo del card
 }
